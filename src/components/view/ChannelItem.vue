@@ -9,7 +9,7 @@
     >
       <transition-group type="transition" name="slide">
         <div
-          v-for="(channel, idx) in channelsData"
+          v-for="(channel) in channelsData"
           :key="channel.id"
           :class="`flex items-center w-full pb-3 last:border-pb-0`"
         >
@@ -38,7 +38,7 @@
           <span class="ml-auto text-gray-400 font-inter font-semibold">
             <button
               class="font-semibold"
-              @click="$emit('removeChannel', channel, idx)"
+              @click="$emit('remove-channel', channel.id)"
             >
               Remove
             </button>
