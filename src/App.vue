@@ -1,6 +1,6 @@
 <template>
   <div>
-<channel-manager/>
+    <channel-manager/>
   </div>
 </template>
 
