@@ -1,7 +1,6 @@
 <template>
   <div class="bg-white w-full h-screen flex justify-center items-center">
     <div>
-      <p>Channels</p>
       <channel-manager/>
     </div>
     

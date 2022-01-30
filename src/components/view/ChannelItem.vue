@@ -35,9 +35,10 @@
           <span class="pl-3 pr-24 font-inter font-medium">{{
             channel.name
           }}</span>
-          <span class="ml-auto text-gray-400 font-inter font-semibold">
+          <span class="ml-auto mr-2 text-gray-400 font-inter font-semibold">
             <button
-              class="font-semibold"
+              class="font-semibold outline-none border-none"
+              data-cy="remove-btn"
               @click="$emit('remove-channel', channel.id, idx)"
             >
               Remove
@@ -61,6 +62,7 @@ export default {
     channels: {
       type: Array,
       default: () => [],
+      required: true
     }
   },
     computed: {

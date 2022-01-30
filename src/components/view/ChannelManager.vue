@@ -1,5 +1,7 @@
 <template>
-  <div class="card">
+<div>
+    <page-title text="Channels"/>
+  <card>
     <div class="mb-4">
       <search-bar
         :searchValue="searchValue"
@@ -23,7 +25,8 @@
       <channel-button outlined @click="cancelChanges">Cancel</channel-button>
       <channel-button primary @click="apply">Apply</channel-button>
     </div>
-  </div>
+  </card>
+</div>
 </template>
 
 <script>
@@ -31,9 +34,11 @@ import ChannelItem from "./ChannelItem.vue";
 import ChannelButton from "../ui/Button.vue";
 import SearchBar from "../ui/SearchBar.vue";
 import { isEqual, exists } from "../../_helpers.js/index.js";
+import Card from '../ui/Card.vue';
+import PageTitle from '../ui/PageTitle.vue';
 
 export default {
-  components: { ChannelItem, ChannelButton, SearchBar },
+  components: { ChannelItem, ChannelButton, SearchBar, Card, PageTitle },
   name: "ChannelManager",
   data() {
     return {
@@ -73,7 +78,7 @@ export default {
       if (!exists(this.channels, newItem, "name")) {
         if (newItem) {
           const item = {
-            id: this.channels.length + 1,
+            id: this.channels[this.channels.length - 1]?.id + 1,
             name: newItem,
             icon: this.icons[Math.floor(Math.random() * this.icons.length)],
             type: "brand",
@@ -118,9 +123,6 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
-.card {
-  @apply bg-white rounded-xl shadow-xl border w-full px-4 py-4 overflow-auto;
-}
 .empty-state {
   @apply px-8 py-6 flex flex-col justify-center items-center;
 }
