@@ -19,7 +19,7 @@
       <p class="text-2xl">This channel does not exist!</p>
       <p class="pt-1">Hit enter to create a new channel</p>
     </div>
-    <div v-if="detectedChanges" class="flex justify-end mt-4">
+    <div v-if="detectedChanges" data-cy="button-container" class="flex justify-end mt-4">
       <channel-button outlined @click="cancelChanges">Cancel</channel-button>
       <channel-button primary @click="apply">Apply</channel-button>
     </div>

@@ -1,5 +1,5 @@
 <template>
- <form>
+ <form data-cy="search-form">
    <div class="relative text-gray-600 focus-within:text-gray-400">
      <span class="absolute inset-y-0 flex items-center pl-4 text-gray-300">
        <font-awesome-icon icon="search" />
@@ -10,6 +10,7 @@
        class="input-field"
        placeholder="Add Channel"
        v-model="inputValue"
+       data-cy="search-input"
        @input="$emit('handle-search', inputValue)"
        @keydown.enter.prevent="$emit('add-new-item', inputValue)"
      />
@@ -18,22 +19,6 @@
 </template>
  
 <script>
-import { library } from "@fortawesome/fontawesome-svg-core";
- 
-import {
- faFacebookMessenger,
- faInstagram,
- faTelegram,
- faSnapchat,
- faSquarespace,
-} from "@fortawesome/free-brands-svg-icons";
-library.add(
- faFacebookMessenger,
- faInstagram,
- faTelegram,
- faSnapchat,
- faSquarespace
-);
  
 export default {
  name: "SearchBar",
