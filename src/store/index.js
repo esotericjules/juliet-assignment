@@ -42,9 +42,6 @@ export const store = new Vuex.Store({
     updateChannels(state, newChannel) {
       state.channels = newChannel;
     },
-    cancel(state, newChannel) {
-      state.channels = newChannel;
-    },
   },
   getters: {
     fetchChannels: (state) => {

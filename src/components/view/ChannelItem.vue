@@ -9,7 +9,7 @@
     >
       <transition-group type="transition" name="slide">
         <div
-          v-for="(channel) in channelsData"
+          v-for="(channel, idx) in channelsData"
           :key="channel.id"
           :class="`flex items-center w-full pb-3 last:border-pb-0`"
         >
@@ -38,7 +38,7 @@
           <span class="ml-auto text-gray-400 font-inter font-semibold">
             <button
               class="font-semibold"
-              @click="$emit('remove-channel', channel.id)"
+              @click="$emit('remove-channel', channel.id, idx)"
             >
               Remove
             </button>
@@ -50,19 +50,7 @@
 </template>
 
 <script>
-import Vue from "vue";
 import draggable from "vuedraggable";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import {
-  faPhone,
-  faEnvelope,
-  faGripVertical,
-  faSearch,
-} from "@fortawesome/free-solid-svg-icons";
-library.add(faWhatsapp, faPhone, faEnvelope, faGripVertical, faSearch);
-Vue.component("FontAwesomeIcon", FontAwesomeIcon);
 
 export default {
   name: "ChannelItem",
