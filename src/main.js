@@ -6,7 +6,7 @@ import {store} from './store'
 import Toasted from 'vue-toasted';
  
 Vue.use(Toasted, {
-  duration: 5000
+  duration: 3000
 })
 
 Vue.config.productionTip = false

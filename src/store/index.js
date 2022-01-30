@@ -40,7 +40,7 @@ export const store = new Vuex.Store({
   },
   mutations: {
     updateChannels(state, newChannel) {
-      state.channels = newChannel;
+      state.channels = [...newChannel];
     },
   },
   getters: {

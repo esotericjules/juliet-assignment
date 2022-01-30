@@ -52,23 +52,21 @@ export default {
     };
   },
   mounted() {
-    this.channels = [...this.channelsData];
-    this.clonedChannels = [...this.channelsData];
+    this.setRecords();
   },
   methods: {
-    removeChannel(id, idx) {
-      this.actionPerformed = "remove";
-      this.channels.splice(idx, 1);
-      this.clonedChannels = this.channels;
+    removeChannel(idx) {
+      this.clonedChannels.splice(idx, 1);
+      this.channels = [...this.clonedChannels];
     },
     updateChannels(updatedChannels) {
-      this.clonedChannels = updatedChannels;
+      this.clonedChannels = [...updatedChannels];
     },
     handleSearch(value) {
       if (value) {
         setTimeout(() => this.filterChannels(this.searchValue), 500);
       } else if (!this.searchValue) {
-        this.channels = this.channelsData;
+        this.channels = [...this.channelsData];
       }
     },
     filterChannels(value) {
@@ -85,29 +83,35 @@ export default {
             icon: this.icons[Math.floor(Math.random() * this.icons.length)],
             type: "brand",
           };
-          this.channels.push(item);
-          this.clonedChannels = this.channels;
           this.$toasted.success("New channel has been added");
+          this.channels.push(item);
+          this.clonedChannels = [...this.channels];
         }
       } else {
         this.$toasted.error("This channel already exists");
-        this.clonedChannels = this.channels;
+        this.clonedChannels = [...this.channels];
       }
       this.searchValue = "";
     },
     apply() {
-      this.$store.commit("updateChannels", this.clonedChannels);
-      this.channels = this.channelsData;
       this.$toasted.success("Your changes have been saved");
+      this.$store.commit("updateChannels", this.channels);
+      this.setRecords();
       this.detectedChanges = false;
+      this.searchValue = "";
     },
     cancelChanges() {
-      this.clonedChannels = [...this.channelsData];
-      this.channels = [...this.channelsData];
+      this.$toasted.info('All changes have been reverted')
+      this.setRecords();
       this.detectedChanges = false;
+      this.searchValue = "";
     },
     setSearchValue(val) {
       this.searchValue = val;
+    },
+    setRecords() {
+      this.clonedChannels = [...this.channelsData];
+      this.channels = [...this.channelsData];
     },
   },
   computed: {
@@ -117,7 +121,10 @@ export default {
   },
   watch: {
     clonedChannels() {
-      if (!this.searchValue && !isEqual(this.clonedChannels, this.channelsData, "name")) {
+      if (
+        !this.searchValue &&
+        !isEqual(this.clonedChannels, this.channelsData, "name")
+      ) {
         this.detectedChanges = true;
       }
     },

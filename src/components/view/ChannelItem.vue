@@ -39,7 +39,7 @@
             <button
               class="font-semibold outline-none border-none"
               data-cy="remove-btn"
-              @click="$emit('remove-channel', channel.id, idx)"
+              @click="$emit('remove-channel', idx)"
             >
               Remove
             </button>
