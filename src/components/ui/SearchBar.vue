@@ -1,7 +1,7 @@
 <template>
  <form data-cy="search-form">
    <div class="relative text-gray-600 focus-within:text-gray-400">
-     <span class="absolute inset-y-0 flex items-center pl-4 text-gray-300">
+     <span class="absolute inset-y-0 flex items-center pl-4 text-trengoGray450">
        <font-awesome-icon icon="search" />
      </span>
      <input
@@ -34,7 +34,6 @@ export default {
        return this.searchValue;
      },
      set(val) {
-     console.log("val", val);
        this.$emit('set-search-value', val);
      },
    },

@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .title {
- @apply text-3xl font-bold mb-6    
+ @apply text-2xl font-bold mb-6    
 }
 
 </style>

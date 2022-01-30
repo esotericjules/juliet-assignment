@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="overflow-auto max-h-80 pr-6">
     <draggable
       v-model="channelsData"
       handle=".dragHandle"
@@ -11,12 +11,12 @@
         <div
           v-for="(channel, idx) in channelsData"
           :key="channel.id"
-          :class="`flex items-center w-full pb-3 last:border-pb-0`"
+          :class="`channel-item`"
         >
-          <span draggable="true" class="px-3 text-gray-300 cursor-move dragHandle">
+          <span draggable="true" class="px-3 text-trengoGray400 cursor-move dragHandle">
             <font-awesome-icon icon="grip-vertical" />
           </span>
-          <span class="px-3 py-2 flex-wrap bg-gray-50 rounded-md text-xl">
+          <span class="px-3 py-2 flex-wrap bg-gray-50 text-galaxy800 rounded-md text-xl">
             <font-awesome-icon
               v-if="channel.type === 'brand'"
               :icon="['fab', channel.icon]"
@@ -35,7 +35,7 @@
           <span class="pl-3 pr-24 font-inter font-medium">{{
             channel.name
           }}</span>
-          <span class="ml-auto mr-2 text-gray-400 font-inter font-semibold">
+          <span class="ml-auto text-trengoGray300 font-inter font-semibold">
             <button
               class="font-semibold outline-none border-none"
               data-cy="remove-btn"
@@ -79,6 +79,9 @@ export default {
 </script>
 
 <style scoped>
+.channel-item {
+  @apply flex items-center w-full pb-3
+}
 .slide-move {
   transition: transform 0.5s;
 }

@@ -2,7 +2,7 @@ const projectColors = {
   white: "#ffffff",
   black: "#000000",
   galaxy100: "#f7f9fb",
-  galazy800: "#404667",
+  galaxy800: "#404667",
   trengoGray350: "#eaeaea",
   trengoGray300: "#838389",
   trengoGray400: "#cbcbd0",

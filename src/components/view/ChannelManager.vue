@@ -1,32 +1,34 @@
 <template>
-<div>
-    <page-title text="Channels"/>
-  <card>
-    <div class="mb-4">
-      <search-bar
-        :searchValue="searchValue"
-        @handle-search="handleSearch"
-        @add-new-item="addNewItem"
-        @set-search-value="setSearchValue"
-      />
-    </div>
-    <div>
+  <div>
+    <page-title text="Channels" />
+    <card>
+      <div class="mb-4">
+        <search-bar
+          :searchValue="searchValue"
+          @handle-search="handleSearch"
+          @add-new-item="addNewItem"
+          @set-search-value="setSearchValue"
+        />
+      </div>
       <channel-item
         :channels="clonedChannels"
         @update-channels="updateChannels"
         @remove-channel="removeChannel"
       />
-    </div>
-    <div v-if="!clonedChannels.length" class="empty-state">
-      <p class="text-2xl">This channel does not exist!</p>
-      <p class="pt-1">Hit enter to create a new channel</p>
-    </div>
-    <div v-if="detectedChanges" data-cy="button-container" class="flex justify-end mt-4">
-      <channel-button outlined @click="cancelChanges">Cancel</channel-button>
-      <channel-button primary @click="apply">Apply</channel-button>
-    </div>
-  </card>
-</div>
+      <div v-if="!clonedChannels.length" class="empty-state">
+        <p class="text-2xl">This channel does not exist!</p>
+        <p class="pt-1">Hit enter to create a new channel</p>
+      </div>
+      <div
+        v-if="detectedChanges"
+        data-cy="button-container"
+        class="flex justify-end mt-4"
+      >
+        <channel-button outlined @click="cancelChanges">Cancel</channel-button>
+        <channel-button primary @click="apply">Apply</channel-button>
+      </div>
+    </card>
+  </div>
 </template>
 
 <script>
@@ -34,8 +36,8 @@ import ChannelItem from "./ChannelItem.vue";
 import ChannelButton from "../ui/Button.vue";
 import SearchBar from "../ui/SearchBar.vue";
 import { isEqual, exists } from "../../_helpers.js/index.js";
-import Card from '../ui/Card.vue';
-import PageTitle from '../ui/PageTitle.vue';
+import Card from "../ui/Card.vue";
+import PageTitle from "../ui/PageTitle.vue";
 
 export default {
   components: { ChannelItem, ChannelButton, SearchBar, Card, PageTitle },
@@ -85,6 +87,7 @@ export default {
           };
           this.channels.push(item);
           this.clonedChannels = this.channels;
+          this.$toasted.success("New channel has been added");
         }
       } else {
         this.$toasted.error("This channel already exists");
@@ -114,7 +117,7 @@ export default {
   },
   watch: {
     clonedChannels() {
-      if (!isEqual(this.clonedChannels, this.channelsData, "name")) {
+      if (!this.searchValue && !isEqual(this.clonedChannels, this.channelsData, "name")) {
         this.detectedChanges = true;
       }
     },
