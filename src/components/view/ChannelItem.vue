@@ -13,10 +13,10 @@
           :key="channel.id"
           :class="`channel-item`"
         >
-          <span draggable="true" class="px-3 text-trengoGray400 cursor-move dragHandle">
+          <span draggable="true" class="dragHandle">
             <font-awesome-icon icon="grip-vertical" />
           </span>
-          <span class="px-3 py-2 flex-wrap bg-gray-50 text-galaxy800 rounded-md text-xl">
+          <span class="icon-wrapper">
             <font-awesome-icon
               v-if="channel.type === 'brand'"
               :icon="['fab', channel.icon]"
@@ -35,7 +35,7 @@
           <span class="pl-3 pr-24 font-inter font-medium">{{
             channel.name
           }}</span>
-          <span class="ml-auto text-trengoGray300 font-inter font-semibold">
+          <span class="remove-wrapper">
             <button
               class="font-semibold outline-none border-none"
               data-cy="remove-btn"
@@ -92,5 +92,14 @@ export default {
   opacity: 0.5;
   background: transparent;
   box-shadow: 10px 10px 5px -1px rgb(0, 0, 0, 0.14);
+}
+.remove-wrapper {
+  @apply ml-auto text-trengoGray300 font-inter font-semibold
+}
+.icon-wrapper {
+  @apply px-3 py-2 flex-wrap bg-gray-50 text-galaxy800 rounded-md text-xl
+}
+.dragHandle {
+  @apply px-3 text-trengoGray400 cursor-move
 }
 </style>

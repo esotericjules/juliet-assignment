@@ -95,8 +95,8 @@ export default {
     },
     apply() {
       this.$toasted.success("Your changes have been saved");
-      this.$store.commit("updateChannels", this.channels);
-      this.setRecords();
+      this.$store.commit("updateChannels", this.clonedChannels);
+      this.channels = [...this.channelsData];
       this.detectedChanges = false;
       this.searchValue = "";
     },
